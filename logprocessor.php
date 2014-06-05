@@ -140,8 +140,9 @@ foreach ($filter_instances as $filter_instance) {
 foreach ($ipReports as $ip => $msgs) {
     echo $ip.PHP_EOL;
     echo gethostbyaddr($ip).PHP_EOL;
-    print_r(geoip_country_name_by_name($ip));
-    echo PHP_EOL;
+    if (function_exists('geoip_country_name_by_name')) {
+        echo geoip_country_name_by_name($ip).PHP_EOL;
+    }
     foreach ($msgs as $msg) {
         echo str_repeat(' ', 8).$msg.PHP_EOL;
     }
